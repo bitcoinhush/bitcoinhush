@@ -1,2 +1,9 @@
-# bitcoinhush
-Bitcoin Hush
+# Bitcoin Hush
+
+## Installing
+
+## Configuring
+
+## Debugging
+
+
