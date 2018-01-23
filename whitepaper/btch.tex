@@ -829,6 +829,11 @@ NOTE: This pre-release refers to stats before the actual snapshot, these numbers
 This data corresponds to Block Height 505157 at 1-20-2018 10:22:15 UTC.
 
 There is 16814298.58608387BTC in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
+Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and another 872314 UTXOs of a single satoshi.
+7002416 transparent addresses are above the dust level of 0.01BTC, and these addresses will be transported to the BTCH chain.
+
+Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be at least 0.01BTC
+to be part of the airdrop. This level was also used by the Bitcore project (BTX) and it seems like a good standard to follow.
 
 \nsection{Hush UTXOs}
 
