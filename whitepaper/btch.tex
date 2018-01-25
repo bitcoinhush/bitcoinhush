@@ -22,7 +22,7 @@
 \RequirePackage{nameref}
 
 \RequirePackage[style=alphabetic,maxbibnames=99,dateabbrev=false,urldate=iso8601,backref=true,backrefstyle=none,backend=biber]{biblatex}
-\addbibresource{hush.bib}
+\addbibresource{btch.bib}
 
 % Fonts
 \RequirePackage{lmodern}
@@ -578,7 +578,8 @@ Bitcoin Hush is a "mergedrop", i.e. it is an airdrop of value from four differen
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
-This data corresponds to Block Height 505157 at 1-20-2018 10:22:15 UTC.
+This data corresponds to Block Height 505157 at 1-20-2018 10:22:15 UTC and was
+extracted directly from the internal Bitcoin LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all 65 million UTXOs at this height.
 
 There is 16814298.58608387BTC in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
 Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and another 872314 UTXOs of a single satoshi.
@@ -609,11 +610,6 @@ Thanks to madbuda for providing servers and massive amounts of bandwidth for thi
 
 \nsection{References}
 
-\begingroup
-\hfuzz=2pt
-\renewcommand{\section}[2]{}
-\renewcommand{\emph}[1]{\textit{#1}}
-\printbibliography
-\endgroup
+%\printbibliography
 
 \end{document}
