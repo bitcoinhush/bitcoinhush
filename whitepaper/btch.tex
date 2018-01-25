@@ -830,7 +830,7 @@ This data corresponds to Block Height 505157 at 1-20-2018 10:22:15 UTC.
 
 There is 16814298.58608387BTC in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
 Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and another 872314 UTXOs of a single satoshi.
-7002416 transparent addresses are above the dust level of 0.01BTC, and these addresses will be transported to the BTCH chain.
+7002416 transparent addresses are above the dust level of 0.01BTC, and these addresses and values will be transported to the BTCH chain.
 
 Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be at least 0.01BTC
 to be part of the airdrop. This level was also used by the Bitcore project (BTX) and it seems like a good standard to follow.
@@ -838,6 +838,18 @@ to be part of the airdrop. This level was also used by the Bitcore project (BTX)
 \nsection{Hush UTXOs}
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
+
+\nsection{Transporting Money to the BTCH Chain}
+
+The \zsendmany RPC is used to efficiently send money to all the appropriate addresses, with the appropriate amount, and the new BTCH chain.
+
+Once the final snapshot balances are known, the taddrs from other
+networks are transformed into a Komodo-compatible address. 
+This is done by taking the RMD160 and then changing the prefix to the KMD pubtype or p2sh type (given a 1 or 3) and then base58\_check encoding.
+
+Then, many many \zsendmany transactions are performed, each with many recipients (such as 100 or 128).
+Once the \zsendmany transactions for a particular chain are sent, that completes the airdrop process. Now
+users can claim their airdrop via their private key.
 
 \nsection{Special Thanks}
 
