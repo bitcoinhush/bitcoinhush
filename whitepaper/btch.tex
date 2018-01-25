@@ -40,7 +40,7 @@
 \renewcommand{\texttt}[1]{\scalebox{1.02}[1.07]{\oldtexttt{#1}}}
 \renewcommand{\mathtt}[1]{\scalebox{1.02}[1.07]{$\oldmathtt{#1}$}}
 
-\newcommand{\zsendmany}{\textbf{z\_sendmany}}
+\newcommand{\zsendmany}{\textbf{z\_sendmany} }
 
 % bold but not extended
 \newcommand{\textbnx}[1]{{\fontseries{b}\selectfont #1}}
@@ -423,84 +423,6 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \newcommand{\rightarrowR}{\buildrel{\scriptstyle\mathrm{R}}\over\rightarrow}
 \newcommand{\leftarrowR}{\buildrel{\scriptstyle\mathrm{R}}\over\leftarrow}
 
-% key pairs:
-\newcommand{\PaymentAddress}{\mathsf{addr_{pk}}}
-\newcommand{\PaymentAddressLeadByte}{\hexint{16}}
-\newcommand{\PaymentAddressSecondByte}{\hexint{9A}}
-\newcommand{\SpendingKeyLeadByte}{\hexint{AB}}
-\newcommand{\SpendingKeySecondByte}{\hexint{36}}
-\newcommand{\PtoSHAddressLeadByte}{\hexint{1C}}
-\newcommand{\PtoSHAddressSecondByte}{\hexint{BD}}
-\newcommand{\PtoPKHAddressLeadByte}{\hexint{1C}}
-\newcommand{\PtoPKHAddressSecondByte}{\hexint{B8}}
-\newcommand{\PaymentAddressTestnetLeadByte}{\hexint{16}}
-\newcommand{\PaymentAddressTestnetSecondByte}{\hexint{B6}}
-\newcommand{\SpendingKeyTestnetLeadByte}{\hexint{AC}}
-\newcommand{\SpendingKeyTestnetSecondByte}{\hexint{08}}
-\newcommand{\PtoSHAddressTestnetLeadByte}{\hexint{1C}}
-\newcommand{\PtoSHAddressTestnetSecondByte}{\hexint{BA}}
-\newcommand{\PtoPKHAddressTestnetLeadByte}{\hexint{1D}}
-\newcommand{\PtoPKHAddressTestnetSecondByte}{\hexint{25}}
-\newcommand{\NotePlaintextLeadByte}{\hexint{00}}
-\newcommand{\AuthPublic}{\mathsf{a_{pk}}}
-\newcommand{\AuthPrivate}{\mathsf{a_{sk}}}
-\newcommand{\AuthPublicX}[1]{\mathsf{a^\mathrm{#1}_{pk}}}
-\newcommand{\AuthPrivateX}[1]{\mathsf{a^\mathrm{#1}_{sk}}}
-\newcommand{\AuthPrivateLength}{\mathsf{\ell_{\AuthPrivate}}}
-\newcommand{\AuthPublicOld}[1]{\mathsf{a^{old}_{pk,\mathnormal{#1}}}}
-\newcommand{\AuthPrivateOld}[1]{\mathsf{a^{old}_{sk,\mathnormal{#1}}}}
-\newcommand{\AuthEmphPublicOld}[1]{\mathsf{a^{old}_{\textsf{\textbf{pk}},\mathnormal{#1}}}}
-\newcommand{\AuthPublicOldX}[1]{\mathsf{a^{old}_{pk,\mathrm{#1}}}}
-\newcommand{\AuthPrivateOldX}[1]{\mathsf{a^{old}_{sk,\mathrm{#1}}}}
-\newcommand{\AuthPublicNew}[1]{\mathsf{a^{new}_{pk,\mathnormal{#1}}}}
-\newcommand{\AuthPrivateNew}[1]{\mathsf{a^{new}_{sk,\mathnormal{#1}}}}
-\newcommand{\AddressPublicNew}[1]{\mathsf{addr^{new}_{pk,\mathnormal{#1}}}}
-\newcommand{\enc}{\mathsf{enc}}
-\newcommand{\DHSecret}[1]{\mathsf{sharedSecret}_{#1}}
-\newcommand{\EphemeralPublic}{\mathsf{epk}}
-\newcommand{\EphemeralPrivate}{\mathsf{esk}}
-\newcommand{\TransmitPublic}{\mathsf{pk_{enc}}}
-\newcommand{\TransmitPublicSup}[1]{\mathsf{pk}^{#1}_\mathsf{enc}}
-\newcommand{\TransmitPublicNew}[1]{\mathsf{pk^{new}_{\enc,\mathnormal{#1}}}}
-\newcommand{\TransmitPrivate}{\mathsf{sk_{enc}}}
-\newcommand{\TransmitPrivateSup}[1]{\mathsf{sk}^{#1}_\mathsf{enc}}
-
-% PRFs
-\newcommand{\PRF}[2]{\mathsf{{PRF}^{#2}_\mathnormal{#1}}}
-\newcommand{\PRFaddr}[1]{\PRF{#1}{addr}}
-\newcommand{\PRFnf}[1]{\PRF{#1}{\nf}}
-\newcommand{\PRFsn}[1]{\PRF{#1}{sn}}
-\newcommand{\PRFpk}[1]{\PRF{#1}{pk}}
-\newcommand{\PRFrho}[1]{\PRF{#1}{\NoteAddressRand}}
-\newcommand{\PRFOutputLength}{\mathsf{\ell_{PRF}}}
-\newcommand{\PRFOutput}{\bitseq{\PRFOutputLength}}
-
-% Commitments
-\newcommand{\Commit}[1]{\mathsf{COMM}_{#1}}
-\newcommand{\CommitTrapdoor}{\mathsf{COMM.Trapdoor}}
-\newcommand{\CommitInput}{\mathsf{COMM.Input}}
-\newcommand{\CommitOutput}{\mathsf{COMM.Output}}
-\newcommand{\NoteCommit}{\mathtt{NoteCommitment}}
-\newcommand{\Uncommitted}{\mathsf{Uncommitted}}
-
-% Money supply
-\newcommand{\MAXMONEY}{\mathsf{MAX\_MONEY}}
-\newcommand{\BlockSubsidy}{\mathsf{BlockSubsidy}}
-\newcommand{\MinerSubsidy}{\mathsf{MinerSubsidy}}
-\newcommand{\FoundersReward}{\mathsf{FoundersReward}}
-\newcommand{\SlowStartInterval}{\mathsf{SlowStartInterval}}
-\newcommand{\SlowStartShift}{\mathsf{SlowStartShift}}
-\newcommand{\SlowStartRate}{\mathsf{SlowStartRate}}
-\newcommand{\HalvingInterval}{\mathsf{HalvingInterval}}
-\newcommand{\MaxBlockSubsidy}{\mathsf{MaxBlockSubsidy}}
-\newcommand{\NumFounderAddresses}{\mathsf{NumFounderAddresses}}
-\newcommand{\FounderAddressChangeInterval}{\mathsf{FounderAddressChangeInterval}}
-\newcommand{\FoundersFraction}{\mathsf{FoundersFraction}}
-\newcommand{\BlockHeight}{\mathsf{height}}
-\newcommand{\Halving}{\mathsf{Halving}}
-\newcommand{\FounderAddress}{\mathsf{FounderAddress}}
-\newcommand{\FounderAddressList}{\mathsf{FounderAddressList}}
-\newcommand{\FounderAddressIndex}{\mathsf{FounderAddressIndex}}
 \newcommand{\RedeemScriptHash}{\mathsf{RedeemScriptHash}}
 
 \newcommand{\consensusrule}[1]{\needspace{3ex}\subparagraph{Consensus rule:}{#1}}
