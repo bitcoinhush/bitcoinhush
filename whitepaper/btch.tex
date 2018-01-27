@@ -537,13 +537,32 @@ to be part of the airdrop. This level was also used by the Bitcore project (BTX)
 
 The \zsendmany RPC is used to efficiently send money to all the appropriate addresses, with the appropriate amount, and the new BTCH chain.
 
-Once the final snapshot balances are known, the taddrs from other
+Once the final snapshot balances are known, the transparent address from other
 networks are transformed into a Komodo-compatible address. 
-This is done by taking the RMD160 and then changing the prefix to the KMD pubtype or p2sh type (given a 1 or 3) and then base58\_check encoding.
+This is done by taking the RMD160 and then changing the prefix to the KMD type, then  base58\_check encoding to produce a transparent adress for the BTCH network.
 
 Then, many many \zsendmany transactions are performed, each with many recipients (such as 100 or 128).
 Once the \zsendmany transactions for a particular chain are sent, that completes the airdrop process. Now
 users can claim their airdrop via their private key.
+
+\nsection{How To Access Your BTCH Airdrop}
+
+The very high level idea is that your private key to a transparent address gives you access
+to new funds on new network. Extreme paranoia about private keys is not unreasonable, and a
+very easy and powerful defense you can take to any bug or malware or anything stealing your
+original \HUSH is this: After the snapshot is defined, move your \HUSH to a new address,
+which can be a taddr or zaddr.
+
+If you move your \HUSH post-snapshot, the privkey in question is no longer valid for your
+\HUSH, and you can worry a bit less. This also protects people that might have DNS or BGP
+attacks redirect them to illegitamate downloads.
+
+For simplicity, let us assume $t_A$ is a taddr with private key $k_A$. The
+\textbf{dumpprivkey} RPC method exists in all Bitcoin forks as well as Zcash
+forks and dumps the private key in "Wallet Import Format" (WIF). This format
+is accepted by the Agama Wallet. Once imported to the Agama Wallet, \BTCH
+can be used on BarterDEX as well.
+
 
 \nsection{Special Thanks}
 
