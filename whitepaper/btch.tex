@@ -21,7 +21,7 @@
 \RequirePackage{nameref}
 
 \RequirePackage[style=alphabetic,maxbibnames=99,dateabbrev=false,urldate=iso8601,backref=true,backrefstyle=none,backend=biber]{biblatex}
-\addbibresource{btch.bib}
+\addbibresource{hush.bib}
 
 % Fonts
 \RequirePackage{lmodern}
@@ -424,10 +424,6 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 
 \newcommand{\RedeemScriptHash}{\mathsf{RedeemScriptHash}}
 
-\newcommand{\consensusrule}[1]{\needspace{3ex}\subparagraph{Consensus rule:}{#1}}
-\newenvironment{consensusrules}{\introlist\subparagraph{Consensus rules:}\begin{itemize}}{\end{itemize}}
-\newcommand{\securityrequirement}[1]{\needspace{3ex}\subparagraph{Security requirement:}{#1}}
-\newenvironment{securityrequirements}{\introlist\subparagraph{Security requirements:}\begin{itemize}}{\end{itemize}}
 \newcommand{\pnote}[1]{\subparagraph{Note:}{#1}}
 \newenvironment{pnotes}{\introlist\subparagraph{Notes:}\begin{itemize}}{\end{itemize}}
 
@@ -585,12 +581,12 @@ Thanks to madbuda for providing servers and massive amounts of bandwidth for thi
 
 \nsection{References}
 
-...
-%\begingroup
-%\hfuzz=2pt
-%\renewcommand{\section}[2]{}
-%\renewcommand{\emph}[1]{\textit{#1}}
-%\printbibliography
-%\endgroup
+%...
+\begingroup
+\hfuzz=2pt
+\renewcommand{\section}[2]{}
+\renewcommand{\emph}[1]{\textit{#1}}
+\printbibliography
+\endgroup
 
 \end{document}
