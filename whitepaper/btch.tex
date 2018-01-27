@@ -495,20 +495,35 @@ how it builds on the foundation of \Komodo,  \Zcash and \Bitcoin .
 
 Bitcoin Hush is a "mergedrop", i.e. it is an airdrop of value from four different chains, merged together, on a new chain.
 
+It's become common to fork the Bitcoin or Zcash network while inheriting all transaction history, which lead to a cryptocoin that has very little hashpower to protect massive amounts of data. We refer to this as a "worst of all worlds" solution and the ideas in this paper provide working examples of
+avoiding this situation.
+
+For example, Bitcoin Gold inherited about 120GB of Bitcoin history and every Bitcoin Gold full node
+must download that locally, before ever getting to any Bitcoin Gold history.  The later in time
+a Bitcoin fork occurs and uses the method, the larger the dataset is (currently 150GB and growing faster) and the more worse the "worst of all worlds" becomes. Just about every Bitcoin fork seen
+today uses this method.
+
+We hope that various organizations and companies realize that the Komodo Platform provides
+"easy onramps" to making a new blockchain which improves on older "techniques" which amount
+to forcing full node operators to use excessive amount of bandwidth and disk space for no good reason.
+
+Additionally, the new \HushList protocol is compatible with Bitcoin Hush and provides the world
+yet another place to have secure and private communication.
+
 \nsection{Hush UTXOs}
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
 This data corresponds to Hush Block Height 245496 at XXX UTC and was extracted directly from the internal
-LevelDB database using both %\cite{bitcoin-tools} and \cite{utxodump}.
+LevelDB database using both \cite{bitcoin-tools} and \cite{utxodump}.
 
 Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
 forks, to our knowledge, use the older v0.8-v0.14 LevelDB format.
 
 At this height, 607134 UTXOs exist, in 95933 transactions and 3177032.96851848 HUSH. This data is
 extracted from the response of the \textbf{gettxoutsetinfo} RPC command while the full node is paused at the correct block.
-Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will most likely be made a proper
-command-line argument to make it easier to analyze UTXOs in the future.
+Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will be made a proper
+command-line argument to make it easier to analyze UTXOs in the future. 
 
 \nsection{Bitcoin UTXOs}
 
@@ -518,7 +533,7 @@ This data corresponds to Block Height \textbf{505157} at 1-20-2018 10:22:15 UTC 
 extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all 65 million UTXOs at this height.
 
 There is \textbf{16814298.58608387 BTC} in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
-Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and another 872314 UTXOs of a single satoshi.
+Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another 872314 UTXOs of a single satoshi.
 7002416 transparent addresses are above the dust level of 0.01BTC, and these addresses and values will be transported to the BTCH chain.
 
 Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be at least 0.01BTC
