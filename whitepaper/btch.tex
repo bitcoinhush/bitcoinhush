@@ -505,6 +505,22 @@ to forcing full node operators to use excessive amount of bandwidth and disk spa
 Additionally, the new \HushList protocol is compatible with Bitcoin Hush and provides the world
 yet another place to have secure and private communication.
 
+\nsection{What is a UTXO, really?}
+
+Adresses spending money are called "inputs" and those receiving money in a transaction are called 
+transaction outputs, TXOs. Transaction outputs that are not spent are called Unspent Transaction Output, or UTXOs.
+The concept of "spentness" is a function of block height, i.e. the fact of whether a particular 
+TXO is spent or not changes over time. This is why a snapshot block is needed, to define a point
+in time to find unspent outputs.
+
+A UTXO is just a blob of binary data, and has many different formats that have evolved since Bitcoin began
+in 2009. The data usually contains some kind of public key or a hash of one, and other metadata. Most UTXO are around 20 bytes but multisig UTXOs can be hundreds of bytes.
+
+For example, one of the most common forms of UTXO looks like this
+
+	\textbf{76a914d3730f005e16bbf741ccbf60a5f66b7be930cb7a88ac}
+
+
 \nsection{Hush UTXOs}
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
@@ -516,7 +532,8 @@ LevelDB database using both \cite{BitcoinTools} and \cite{utxodump}.
 Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
 forks, to our knowledge, use the older v0.8-v0.14 LevelDB format.
 
-At this height, 607134 UTXOs exist, in 95933 transactions and 3177032.96851848 HUSH. This data is
+At this height, \textbf{607134} UTXOs exist, in \textbf{95933} transactions and 
+\textbf{3177032.96851848 HUSH}. This data is
 extracted from the response of the \textbf{gettxoutsetinfo} RPC command while the full node is paused at the correct block.
 Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will be made a proper
 command-line argument to make it easier to analyze UTXOs in the future. 
