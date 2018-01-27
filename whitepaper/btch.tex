@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \RequirePackage{amsmath}
 \RequirePackage{bytefield}
 \RequirePackage{graphicx}
@@ -496,12 +495,27 @@ how it builds on the foundation of \Komodo,  \Zcash and \Bitcoin .
 
 Bitcoin Hush is a "mergedrop", i.e. it is an airdrop of value from four different chains, merged together, on a new chain.
 
+\nsection{Hush UTXOs}
+
+NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
+
+This data corresponds to Hush Block Height 245496 at XXX UTC and was extracted directly from the internal
+LevelDB database using both \cite{bitcoin_tools} and \cite{utxodump}.
+
+Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
+forks, to our knowledge, use the older v0.8-v0.14 LevelDB format.
+
+At this height, 607134 UTXOs exist, in 95933 transactions and 3177032.96851848 HUSH. This data is
+extracted from the response of the $gettxoutsetinfo$ RPC command while the full node is paused at the correct block.
+Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will most likely be made a proper
+command-line argument to make it easier to analyze UTXOs in the future.
+
 \nsection{Bitcoin UTXOs}
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
 This data corresponds to Block Height 505157 at 1-20-2018 10:22:15 UTC and was
-extracted directly from the internal Bitcoin LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all 65 million UTXOs at this height.
+extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all 65 million UTXOs at this height.
 
 There is 16814298.58608387BTC in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
 Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and another 872314 UTXOs of a single satoshi.
@@ -510,9 +524,14 @@ Somewhat surprisingly, there are 5605 UTXOs with exactly 0BTC in them and anothe
 Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be at least 0.01BTC
 to be part of the airdrop. This level was also used by the Bitcore project (BTX) and it seems like a good standard to follow.
 
-\nsection{Hush UTXOs}
 
-NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
+\nsection{SUPERNET UTXOs}
+
+...
+
+\nsection{DEX UTXOs}
+
+...
 
 \nsection{Transporting Money to the BTCH Chain}
 
@@ -532,6 +551,11 @@ Thanks to madbuda for providing servers and massive amounts of bandwidth for thi
 
 \nsection{References}
 
+%\begingroup
+%\hfuzz=2pt
+%\renewcommand{\section}[2]{}
+%\renewcommand{\emph}[1]{\textit{#1}}
 %\printbibliography
+%\endgroup
 
 \end{document}
