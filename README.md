@@ -46,7 +46,15 @@ BTCH uses RPC port 10161 and a P2P port of 10160, you might need to allow them i
 }
 ```
 
-## Frequently Asked Questions
+# Frequently Asked Questions
 
-...
+## Can I mine BTCH?
+
+Mining does not create new money, but yes, you can earn small amounts of BTCH by helping confirm blocks, you simply add `-gen` when you start things up:
+
+```
+./src/komodod -ac_name=BTCH -ac_supply=20998641 -addnode=78.47.196.146 -gen &> btch.log &
+```
+Note that this will send each bit of earnings you make to a new address, which is not great. Set a `mineraddress=taddr` in your BTCH.conf to have it all go to one address
+
 
