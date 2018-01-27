@@ -445,12 +445,11 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \begin{abstract}
 \normalsize \noindent \textbf{Abstract.}
 
-
 Bitcoin Hush (\BTCH) is a new research and development cryptocoin which has
 many unique features compared to existing options. It avoids all transaction
 history and simply imports Unspent Transaction Output (UTXO) values for
 four different blockchains onto a fifth, brand-new chain. We use the Komodo Asset Chain feature to build
-a coin with delayed-Proof-of-Work (dPOW), which enjoys the full security of Bitcoin
+a coin with delayed-Proof-of-Work \cite{dPoW}, which enjoys the full security of Bitcoin
 level security via notarization.
 
 Additionally, the need for the latest two way replay protection (2WRP) algorithms are
@@ -462,8 +461,8 @@ of data.
 We hope these techniques are utilized in all future Bitcoin and related forks
 to avoid large inefficiencies as well as potential replay attacks.
 
-The recently released \HushList protocol is compatible with \BTCH, \KMD and
-all \KMD asset chains, which all contain \zkSNARK technology.
+The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, \KMD and
+all \KMD asset chains, which all contain \zkSNARK \cite{BCTV2015} technology.
 Additionaly, \HushList is known to be compatible with
 \HUSH, \ZEC, \ZCL, \ZEN, \ZER and the upcoming Zgold \ZAU by radix42.
 
@@ -510,7 +509,8 @@ yet another place to have secure and private communication.
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
-This data corresponds to Hush Block Height 245496 at XXX UTC and was extracted directly from the internal
+This data corresponds to Hush Block Height \textbf{245496} at Jan 24, 2018 7:03:34 AM
+ UTC and was extracted directly from the internal
 LevelDB database using both \cite{BitcoinTools} and \cite{utxodump}.
 
 Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
@@ -525,24 +525,26 @@ command-line argument to make it easier to analyze UTXOs in the future.
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
-This data corresponds to Block Height \textbf{505157} at 1-20-2018 10:22:15 UTC and was
-extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all 65 million UTXOs at this height.
+This data corresponds to Block Height \textbf{505157} at Jan 24th, 2018 10:22:15 UTC and was
+extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all \textbf{63.6} million UTXOs at this height.
 
-There is \textbf{16814298.58608387 BTC} in circulation stored across 63646112 UTXOs in 27834789 unique transparent addresses (taddrs).
-Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another 872314 UTXOs of a single satoshi.
-7002416 transparent addresses are above the dust level of 0.01BTC, and these addresses and values will be transported to the BTCH chain.
+There is \textbf{16814298.58608387 BTC} in circulation stored across \textbf{63646112} UTXOs in 
+\textbf{27834789} unique transparent addresses (taddrs).
+Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{872314} UTXOs of a single satoshi. The latter are mostly likely from transaction spam attacks from other networks.
+
+\textbf{7002416} transparent addresses are above the dust level of 0.01BTC, and these addresses and values will be transported to the BTCH chain.
 
 Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be at least 0.01BTC
-to be part of the airdrop. This level was also used by the Bitcore project (BTX) and it seems like a good standard to follow.
+to be part of the airdrop. This level was also used by the Bitcore project (BTX).
 
 
 \nsection{SUPERNET UTXOs}
 
-...
+To Be Determined
 
 \nsection{DEX UTXOs}
 
-...
+To Be Determined
 
 \nsection{Transporting Money to the BTCH Chain}
 
@@ -572,8 +574,7 @@ For simplicity, let us assume $t_A$ is a taddr with private key $k_A$. The
 \textbf{dumpprivkey} RPC method exists in all Bitcoin forks as well as Zcash
 forks and dumps the private key in "Wallet Import Format" (WIF). This format
 is accepted by the Agama Wallet. Once imported to the Agama Wallet, \BTCH
-can be used on BarterDEX as well.
-
+can be used on BarterDEX \cite{BarterDEX} as well.
 
 \nsection{Special Thanks}
 
