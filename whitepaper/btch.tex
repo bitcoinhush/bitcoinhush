@@ -464,7 +464,7 @@ to avoid large inefficiencies as well as potential replay attacks.
 The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, \KMD and
 all \KMD asset chains, which all contain \zkSNARK \cite{BCTV2015} technology.
 Additionaly, \HushList is known to be compatible with
-\HUSH, \ZEC, \ZCL, \ZEN, \ZER and the upcoming Zgold \ZAU by radix42.
+\HUSH, \ZEC, \ZCL, \ZEN, \ZER, and the upcoming Zgold \ZAU by radix42.
 
 
 \vspace{1.5ex}
@@ -507,7 +507,7 @@ yet another place to have secure and private communication.
 
 \nsection{What is a UTXO, really?}
 
-Adresses spending money are called "inputs" and those receiving money in a transaction are called 
+Addresses spending money are called "inputs" and those receiving money in a transaction are called 
 transaction outputs, TXOs. Transaction outputs that are not spent are called Unspent Transaction Output, or UTXOs.
 The concept of "spentness" is a function of block height, i.e. the fact of whether a particular 
 TXO is spent or not changes over time. This is why a snapshot block is needed, to define a point
@@ -550,7 +550,7 @@ There is \textbf{16814298.58608387 BTC} in circulation stored across \textbf{636
 Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{872314} UTXOs of a single satoshi. The latter are mostly likely from transaction spam attacks from other networks.
 
 Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be above the "dust level"
-to be part of the airdrop. The level for each chain has yet to be decided.
+to be part of the airdrop. That is, the level at which the cost to airdrop is greater than the value of the UTXO. The level for each chain has yet to be decided.
 
 
 \nsection{SUPERNET UTXOs}
@@ -563,11 +563,11 @@ To Be Determined
 
 \nsection{Transporting Money to the BTCH Chain}
 
-The \zsendmany RPC is used to efficiently send money to all the appropriate addresses, with the appropriate amount, and the new BTCH chain.
+The \zsendmany RPC is used to efficiently send money to all the appropriate addresses, with the appropriate amount, on the new BTCH chain.
 
-Once the final snapshot balances are known, the transparent address from other
-networks are transformed into a Komodo-compatible address. 
-This is done by taking the RMD160 and then changing the prefix to the KMD type, then  base58\_check encoding to produce a transparent adress for the BTCH network.
+Once the final snapshot balances are known, the transparent addresses from other
+networks are transformed into Komodo-compatible addresses. 
+This is done by taking the RMD160 and then changing the prefix to the KMD type, then  base58\_check encoding to produce new transparent addresses for the BTCH network.
 
 Then, many many \zsendmany transactions are performed, each with many recipients (such as 100 or 128).
 Once the \zsendmany transactions for a particular chain are sent, that completes the airdrop process. Now
@@ -575,19 +575,18 @@ users can claim their airdrop via their private key.
 
 \nsection{How To Access Your BTCH Airdrop}
 
-The very high level idea is that your private key to a transparent address gives you access
-to new funds on new network. Extreme paranoia about private keys is not unreasonable, and a
-very easy and powerful defense you can take to any bug or malware or anything stealing your
-original \HUSH is this: After the snapshot is defined, move your \HUSH to a new address,
-which can be a taddr or zaddr.
+The very high level idea is that the private key to your transparent address gives you access
+to new funds on a new network. Extreme paranoia about private keys is not unreasonable. Fear of software bugs, malware, or anything stealing your
+original \HUSH can simply be countered by moving your \HUSH to a new address,
+which can be a taddr or zaddr, after the snapshot.
 
 If you move your \HUSH post-snapshot, the privkey in question is no longer valid for your
 \HUSH, and you can worry a bit less. This also protects people that might have DNS or BGP
 attacks redirect them to illegitamate downloads.
 
 For simplicity, let us assume $t_A$ is a taddr with private key $k_A$. The
-\textbf{dumpprivkey} RPC method exists in all Bitcoin forks as well as Zcash
-forks and dumps the private key in "Wallet Import Format" (WIF). This format
+\textbf{dumpprivkey} RPC method exists in all Bitcoin forks, as well as Zcash
+forks, and dumps the private key in "Wallet Import Format" (WIF). This format
 is accepted by the Agama Wallet. Once imported to the Agama Wallet, \BTCH
 can be used on BarterDEX \cite{BarterDEX} as well.
 
@@ -610,7 +609,7 @@ which \BTCH uses for dPoW. This will use gigabytes of bandwidth at first,
 and could take a day or more to fully sync depending on download speeds.
 
 Running a full \BTCH node is not required to protect the security of the network,
-nor to generate new money, but full nodes can earn the 0.0001 BCH per block plus
+nor to generate new money, but full nodes can earn the verification reward of 0.0001 BTCH per block plus
 any transaction fees in that block.
 
 Full instructions can be found on the main \BTCH Github Repo \cite{BitcoinHush}.
