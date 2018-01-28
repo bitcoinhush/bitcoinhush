@@ -184,6 +184,7 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \newcommand{\ZEN}{\termbf{ZEN}}
 \newcommand{\ZCL}{\termbf{ZCL}}
 \newcommand{\KMD}{\termbf{KMD}}
+\newcommand{\VOT}{\termbf{VOT}}
 \newcommand{\BTCP}{\termbf{BTCP}}
 \newcommand{\ZGLD}{\termbf{ZGLD}}
 \newcommand{\HUSH}{\termbf{HUSH}}
@@ -449,8 +450,8 @@ Bitcoin Hush (\BTCH) is a new research and development cryptocoin which has
 many unique features compared to existing options. It avoids all transaction
 history and simply imports Unspent Transaction Output (UTXO) values for
 four different blockchains onto a fifth, brand-new chain. We use the Komodo Asset Chain feature to build
-a coin with delayed-Proof-of-Work \cite{dPoW}, which enjoys the full security of Bitcoin
-level security via notarization.
+a coin with delayed-Proof-of-Work \cite{dPoW}, which enjoys full Bitcoin
+hashpower security via notarization.
 
 Additionally, the need for the latest two way replay protection (2WRP) algorithms are
 completely avoided, since no transaction hashes are leaked
@@ -461,11 +462,11 @@ of unused data.
 We hope these techniques are utilized in future Bitcoin and related forks
 to avoid large inefficiencies as well as potential replay attacks.
 
-The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, \KMD and
-all \KMD asset chains, which all contain \zkSNARK \cite{BCTV2015} technology.
+The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, 
+Komodo \KMD and all \KMD asset chains, which all contain \zkSNARK \cite{BCTV2015} technology.
 Additionaly, \HushList is known to be compatible with
-\HUSH, \ZEC, \ZCL, \ZEN, \ZER, and the upcoming Zgold \ZAU by radix42.
-
+\HUSH, Zcash \ZEC, VoteCoin \VOT, Zen \ZEN, Zerocoin \ZER, Zclassic \ZCL
+and the upcoming Zgold \ZAU by radix42.
 
 \vspace{1.5ex}
 \noindent This specification defines how the \BTCH cryptocoin works and how
