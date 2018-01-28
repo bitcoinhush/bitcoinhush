@@ -456,9 +456,9 @@ Additionally, the need for the latest two way replay protection (2WRP) algorithm
 completely avoided, since no transaction hashes are leaked
 onto the new chain. This also completely avoids the problem that many Bitcoin
 forks have where they inherit a very large existing chain and must sync gigabytes
-of data.
+of unused data.
 
-We hope these techniques are utilized in all future Bitcoin and related forks
+We hope these techniques are utilized in future Bitcoin and related forks
 to avoid large inefficiencies as well as potential replay attacks.
 
 The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, \KMD and
@@ -519,7 +519,6 @@ in 2009. The data usually contains some kind of public key or a hash of one, and
 For example, one of the most common forms of UTXO looks like this
 
 	\textbf{76a914d3730f005e16bbf741ccbf60a5f66b7be930cb7a88ac}
-
 
 \nsection{Hush UTXOs}
 
