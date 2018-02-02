@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \RequirePackage{amsmath}
 \RequirePackage{bytefield}
 \RequirePackage{graphicx}
@@ -22,7 +21,7 @@
 \RequirePackage{nameref}
 
 \RequirePackage[style=alphabetic,maxbibnames=99,dateabbrev=false,urldate=iso8601,backref=true,backrefstyle=none,backend=biber]{biblatex}
-\addbibresource{hush.bib}
+\addbibresource{btch.bib}
 
 % Fonts
 \RequirePackage{lmodern}
@@ -40,7 +39,7 @@
 \renewcommand{\texttt}[1]{\scalebox{1.02}[1.07]{\oldtexttt{#1}}}
 \renewcommand{\mathtt}[1]{\scalebox{1.02}[1.07]{$\oldmathtt{#1}$}}
 
-\newcommand{\zsendmany}{\textbf{z\_sendmany}}
+\newcommand{\zsendmany}{\textbf{z\_sendmany} }
 
 % bold but not extended
 \newcommand{\textbnx}[1]{{\fontseries{b}\selectfont #1}}
@@ -90,6 +89,8 @@
 \newcommand{\Hushlists}{\termbf{HushLists}}
 \newcommand{\HushLists}{\termbf{HushLists}}
 
+\newcommand{\BTCH}{\termbf{BTCH}}
+\newcommand{\ZAU}{\termbf{ZAU}}
 \newcommand{\doctitle}{Bitcoin Hush (\BTCH) Cryptocoin Specification}
 \newcommand{\leadauthor}{Duke Leto}
 \newcommand{\coauthora}{\;jl777}
@@ -183,7 +184,7 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \newcommand{\ZEN}{\termbf{ZEN}}
 \newcommand{\ZCL}{\termbf{ZCL}}
 \newcommand{\KMD}{\termbf{KMD}}
-\newcommand{\BTCH}{\termbf{BTCH}}
+\newcommand{\VOT}{\termbf{VOT}}
 \newcommand{\BTCP}{\termbf{BTCP}}
 \newcommand{\ZGLD}{\termbf{ZGLD}}
 \newcommand{\HUSH}{\termbf{HUSH}}
@@ -422,338 +423,8 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \newcommand{\rightarrowR}{\buildrel{\scriptstyle\mathrm{R}}\over\rightarrow}
 \newcommand{\leftarrowR}{\buildrel{\scriptstyle\mathrm{R}}\over\leftarrow}
 
-% key pairs:
-\newcommand{\PaymentAddress}{\mathsf{addr_{pk}}}
-\newcommand{\PaymentAddressLeadByte}{\hexint{16}}
-\newcommand{\PaymentAddressSecondByte}{\hexint{9A}}
-\newcommand{\SpendingKeyLeadByte}{\hexint{AB}}
-\newcommand{\SpendingKeySecondByte}{\hexint{36}}
-\newcommand{\PtoSHAddressLeadByte}{\hexint{1C}}
-\newcommand{\PtoSHAddressSecondByte}{\hexint{BD}}
-\newcommand{\PtoPKHAddressLeadByte}{\hexint{1C}}
-\newcommand{\PtoPKHAddressSecondByte}{\hexint{B8}}
-\newcommand{\PaymentAddressTestnetLeadByte}{\hexint{16}}
-\newcommand{\PaymentAddressTestnetSecondByte}{\hexint{B6}}
-\newcommand{\SpendingKeyTestnetLeadByte}{\hexint{AC}}
-\newcommand{\SpendingKeyTestnetSecondByte}{\hexint{08}}
-\newcommand{\PtoSHAddressTestnetLeadByte}{\hexint{1C}}
-\newcommand{\PtoSHAddressTestnetSecondByte}{\hexint{BA}}
-\newcommand{\PtoPKHAddressTestnetLeadByte}{\hexint{1D}}
-\newcommand{\PtoPKHAddressTestnetSecondByte}{\hexint{25}}
-\newcommand{\NotePlaintextLeadByte}{\hexint{00}}
-\newcommand{\AuthPublic}{\mathsf{a_{pk}}}
-\newcommand{\AuthPrivate}{\mathsf{a_{sk}}}
-\newcommand{\AuthPublicX}[1]{\mathsf{a^\mathrm{#1}_{pk}}}
-\newcommand{\AuthPrivateX}[1]{\mathsf{a^\mathrm{#1}_{sk}}}
-\newcommand{\AuthPrivateLength}{\mathsf{\ell_{\AuthPrivate}}}
-\newcommand{\AuthPublicOld}[1]{\mathsf{a^{old}_{pk,\mathnormal{#1}}}}
-\newcommand{\AuthPrivateOld}[1]{\mathsf{a^{old}_{sk,\mathnormal{#1}}}}
-\newcommand{\AuthEmphPublicOld}[1]{\mathsf{a^{old}_{\textsf{\textbf{pk}},\mathnormal{#1}}}}
-\newcommand{\AuthPublicOldX}[1]{\mathsf{a^{old}_{pk,\mathrm{#1}}}}
-\newcommand{\AuthPrivateOldX}[1]{\mathsf{a^{old}_{sk,\mathrm{#1}}}}
-\newcommand{\AuthPublicNew}[1]{\mathsf{a^{new}_{pk,\mathnormal{#1}}}}
-\newcommand{\AuthPrivateNew}[1]{\mathsf{a^{new}_{sk,\mathnormal{#1}}}}
-\newcommand{\AddressPublicNew}[1]{\mathsf{addr^{new}_{pk,\mathnormal{#1}}}}
-\newcommand{\enc}{\mathsf{enc}}
-\newcommand{\DHSecret}[1]{\mathsf{sharedSecret}_{#1}}
-\newcommand{\EphemeralPublic}{\mathsf{epk}}
-\newcommand{\EphemeralPrivate}{\mathsf{esk}}
-\newcommand{\TransmitPublic}{\mathsf{pk_{enc}}}
-\newcommand{\TransmitPublicSup}[1]{\mathsf{pk}^{#1}_\mathsf{enc}}
-\newcommand{\TransmitPublicNew}[1]{\mathsf{pk^{new}_{\enc,\mathnormal{#1}}}}
-\newcommand{\TransmitPrivate}{\mathsf{sk_{enc}}}
-\newcommand{\TransmitPrivateSup}[1]{\mathsf{sk}^{#1}_\mathsf{enc}}
-
-% PRFs
-\newcommand{\PRF}[2]{\mathsf{{PRF}^{#2}_\mathnormal{#1}}}
-\newcommand{\PRFaddr}[1]{\PRF{#1}{addr}}
-\newcommand{\PRFnf}[1]{\PRF{#1}{\nf}}
-\newcommand{\PRFsn}[1]{\PRF{#1}{sn}}
-\newcommand{\PRFpk}[1]{\PRF{#1}{pk}}
-\newcommand{\PRFrho}[1]{\PRF{#1}{\NoteAddressRand}}
-\newcommand{\PRFOutputLength}{\mathsf{\ell_{PRF}}}
-\newcommand{\PRFOutput}{\bitseq{\PRFOutputLength}}
-
-% Commitments
-\newcommand{\Commit}[1]{\mathsf{COMM}_{#1}}
-\newcommand{\CommitTrapdoor}{\mathsf{COMM.Trapdoor}}
-\newcommand{\CommitInput}{\mathsf{COMM.Input}}
-\newcommand{\CommitOutput}{\mathsf{COMM.Output}}
-\newcommand{\NoteCommit}{\mathtt{NoteCommitment}}
-\newcommand{\Uncommitted}{\mathsf{Uncommitted}}
-
-% Symmetric encryption
-\newcommand{\Sym}{\mathsf{Sym}}
-\newcommand{\SymEncrypt}[1]{\mathsf{Sym.}\mathtt{Encrypt}_{#1}}
-\newcommand{\SymDecrypt}[1]{\mathsf{Sym.}\mathtt{Decrypt}_{#1}}
-\newcommand{\SymSpecific}{\mathsf{AEAD\_CHACHA20\_POLY1305}}
-\newcommand{\SymCipher}{\mathsf{ChaCha20}}
-\newcommand{\SymAuth}{\mathsf{Poly1305}}
-\newcommand{\Ptext}{\mathsf{P}}
-\newcommand{\Plaintext}{\mathsf{Sym.}\mathbf{P}}
-\newcommand{\Ctext}{\mathsf{C}}
-\newcommand{\Ciphertext}{\mathsf{Sym.}\mathbf{C}}
-\newcommand{\Key}{\mathsf{K}}
-\newcommand{\Keyspace}{\mathsf{Sym.}\mathbf{K}}
-\newcommand{\TransmitPlaintext}[1]{\Ptext^\enc_{#1}}
-\newcommand{\TransmitCiphertext}[1]{\Ctext^\enc_{#1}}
-\newcommand{\TransmitKey}[1]{\Key^\enc_{#1}}
-\newcommand{\Adversary}{\mathcal{A}}
-\newcommand{\CryptoBoxSeal}{\mathsf{crypto\_box\_seal}}
-
-% Key agreement
-\newcommand{\KA}{\mathsf{KA}}
-\newcommand{\KAPublic}{\mathsf{KA.Public}}
-\newcommand{\KAPrivate}{\mathsf{KA.Private}}
-\newcommand{\KASharedSecret}{\mathsf{KA.SharedSecret}}
-\newcommand{\KAFormatPrivate}{\mathsf{KA.}\mathtt{FormatPrivate}}
-\newcommand{\KADerivePublic}{\mathsf{KA.}\mathtt{DerivePublic}}
-\newcommand{\KAAgree}{\mathsf{KA.}\mathtt{Agree}}
-\newcommand{\CurveMultiply}{\mathsf{Curve25519}}
-\newcommand{\CurveBase}{\bytes{9}}
-\newcommand{\Clamp}{\mathsf{clamp_{Curve25519}}}
-
-% KDF
-\newcommand{\KDF}{\mathsf{KDF}}
-\newcommand{\kdftag}{\mathsf{kdftag}}
-\newcommand{\kdfinput}{\mathsf{kdfinput}}
-
-% Notes
-\newcommand{\Value}{\mathsf{v}}
-\newcommand{\ValueNew}[1]{\mathsf{v^{new}_\mathnormal{#1}}}
-\newcommand{\ValueOld}[1]{\mathsf{v^{old}_\mathnormal{#1}}}
-\newcommand{\NoteTuple}[1]{\mathbf{n}_{#1}}
-\newcommand{\NoteType}{\mathsf{Note}}
-\newcommand{\NotePlaintext}[1]{\mathbf{np}_{#1}}
-\newcommand{\NoteCommitRand}{\mathsf{r}}
-\newcommand{\NoteCommitRandLength}{\mathsf{\ell_{\NoteCommitRand}}}
-\newcommand{\NoteCommitRandOld}[1]{\mathsf{r^{old}_\mathnormal{#1}}}
-\newcommand{\NoteCommitRandNew}[1]{\mathsf{r^{new}_\mathnormal{#1}}}
-\newcommand{\NoteAddressRand}{\mathsf{\uprho}}
-\newcommand{\NoteAddressRandOld}[1]{\mathsf{\uprho^{old}_\mathnormal{#1}}}
-\newcommand{\NoteAddressRandOldX}[1]{\mathsf{\uprho^{old}_\mathrm{#1}}}
-\newcommand{\NoteAddressRandNew}[1]{\mathsf{\uprho^{new}_\mathnormal{#1}}}
-\newcommand{\NoteAddressPreRand}{\mathsf{\upvarphi}}
-\newcommand{\NoteAddressPreRandLength}{\mathsf{\ell_{\NoteAddressPreRand}}}
-\newcommand{\NoteCommitS}{\mathsf{s}}
-\newcommand{\cm}{\mathsf{cm}}
-\newcommand{\cmOld}[1]{\mathsf{{cm}^{old}_\mathnormal{#1}}}
-\newcommand{\cmOldX}[1]{\mathsf{{cm}^{old}_\mathrm{#1}}}
-\newcommand{\cmNew}[1]{\mathsf{{cm}^{new}_\mathnormal{#1}}}
-\newcommand{\snOldX}[1]{\mathsf{{sn}^{old}_\mathrm{#1}}}
-\newcommand{\nf}{\mathsf{nf}}
-\newcommand{\nfOld}[1]{\nf^\mathsf{old}_\mathnormal{#1}}
-\newcommand{\Memo}{\mathsf{memo}}
-\newcommand{\DecryptNote}{\mathtt{DecryptNote}}
-\newcommand{\ReplacementCharacter}{\textsf{U+FFFD}}
-
-% Money supply
-\newcommand{\MAXMONEY}{\mathsf{MAX\_MONEY}}
-\newcommand{\BlockSubsidy}{\mathsf{BlockSubsidy}}
-\newcommand{\MinerSubsidy}{\mathsf{MinerSubsidy}}
-\newcommand{\FoundersReward}{\mathsf{FoundersReward}}
-\newcommand{\SlowStartInterval}{\mathsf{SlowStartInterval}}
-\newcommand{\SlowStartShift}{\mathsf{SlowStartShift}}
-\newcommand{\SlowStartRate}{\mathsf{SlowStartRate}}
-\newcommand{\HalvingInterval}{\mathsf{HalvingInterval}}
-\newcommand{\MaxBlockSubsidy}{\mathsf{MaxBlockSubsidy}}
-\newcommand{\NumFounderAddresses}{\mathsf{NumFounderAddresses}}
-\newcommand{\FounderAddressChangeInterval}{\mathsf{FounderAddressChangeInterval}}
-\newcommand{\FoundersFraction}{\mathsf{FoundersFraction}}
-\newcommand{\BlockHeight}{\mathsf{height}}
-\newcommand{\Halving}{\mathsf{Halving}}
-\newcommand{\FounderAddress}{\mathsf{FounderAddress}}
-\newcommand{\FounderAddressList}{\mathsf{FounderAddressList}}
-\newcommand{\FounderAddressIndex}{\mathsf{FounderAddressIndex}}
 \newcommand{\RedeemScriptHash}{\mathsf{RedeemScriptHash}}
 
-\newcommand{\blockSubsidy}{\term{block subsidy}}
-\newcommand{\minerSubsidy}{\term{miner subsidy}}
-\newcommand{\foundersReward}{\term{Founders' Reward}}
-\newcommand{\slowStartPeriod}{\term{slow-start period}}
-\newcommand{\halvingInterval}{\term{halving interval}}
-
-\newcommand{\PoWLimit}{\mathsf{PoWLimit}}
-\newcommand{\PoWAveragingWindow}{\mathsf{PoWAveragingWindow}}
-\newcommand{\PoWMedianBlockSpan}{\mathsf{PoWMedianBlockSpan}}
-\newcommand{\PoWMaxAdjustDown}{\mathsf{PoWMaxAdjustDown}}
-\newcommand{\PoWMaxAdjustUp}{\mathsf{PoWMaxAdjustUp}}
-\newcommand{\PoWDampingFactor}{\mathsf{PoWDampingFactor}}
-\newcommand{\PoWTargetSpacing}{\mathsf{PoWTargetSpacing}}
-\newcommand{\MeanTarget}{\mathsf{MeanTarget}}
-\newcommand{\MedianTime}{\mathsf{MedianTime}}
-\newcommand{\AveragingWindowTimespan}{\mathsf{AveragingWindowTimespan}}
-\newcommand{\MinActualTimespan}{\mathsf{MinActualTimespan}}
-\newcommand{\MaxActualTimespan}{\mathsf{MaxActualTimespan}}
-\newcommand{\ActualTimespan}{\mathsf{ActualTimespan}}
-\newcommand{\ActualTimespanDamped}{\mathsf{ActualTimespanDamped}}
-\newcommand{\ActualTimespanClamped}{\mathsf{ActualTimespanClamped}}
-\newcommand{\Threshold}{\mathsf{Threshold}}
-\newcommand{\ThresholdBits}{\mathsf{ThresholdBits}}
-
-\newcommand{\targetThreshold}{\term{target threshold}}
-\newcommand{\targetThresholds}{\term{target thresholds}}
-
-% Signatures
-\newcommand{\Sig}{\mathsf{Sig}}
-\newcommand{\SigPublic}{\mathsf{Sig.Public}}
-\newcommand{\SigPrivate}{\mathsf{Sig.Private}}
-\newcommand{\SigMessage}{\mathsf{Sig.Message}}
-\newcommand{\SigSignature}{\mathsf{Sig.Signature}}
-\newcommand{\SigGen}{\mathsf{Sig.Gen}}
-\newcommand{\SigSign}[1]{\mathsf{Sig.Sign}_{#1}}
-\newcommand{\SigVerify}[1]{\mathsf{Sig.Verify}_{#1}}
-\newcommand{\JoinSplitSig}{\mathsf{JoinSplitSig}}
-\newcommand{\JoinSplitSigPublic}{\mathsf{JoinSplitSig.Public}}
-\newcommand{\JoinSplitSigPrivate}{\mathsf{JoinSplitSig.Private}}
-\newcommand{\JoinSplitSigMessage}{\mathsf{JoinSplitSig.Message}}
-\newcommand{\JoinSplitSigSignature}{\mathsf{JoinSplitSig.Signature}}
-\newcommand{\JoinSplitSigGen}{\mathsf{JoinSplitSig.Gen}}
-\newcommand{\JoinSplitSigSign}[1]{\mathsf{JoinSplitSig.Sign}_{#1}}
-\newcommand{\JoinSplitSigVerify}[1]{\mathsf{JoinSplitSig.Verify}_{#1}}
-\newcommand{\JoinSplitSigSpecific}{\mathsf{Ed25519}}
-\newcommand{\JoinSplitSigHashName}{\mathsf{SHA\mhyphen512}}
-\newcommand{\EdDSAr}{R}
-\newcommand{\EdDSAs}{S}
-\newcommand{\EdDSAR}{\bytes{R}}
-\newcommand{\EdDSAS}{\bytes{S}}
-\newcommand{\RandomSeedLength}{\mathsf{\ell_{Seed}}}
-\newcommand{\RandomSeedType}{\bitseq{\mathsf{\ell_{Seed}}}}
-\newcommand{\pksig}{\mathsf{pk_{sig}}}
-\newcommand{\sk}{\mathsf{sk}}
-\newcommand{\hSigInput}{\mathsf{hSigInput}}
-\newcommand{\dataToBeSigned}{\mathsf{dataToBeSigned}}
-
-% Merkle tree
-\newcommand{\MerkleDepth}{\mathsf{d_{Merkle}}}
-\newcommand{\MerkleNode}[2]{\mathsf{M}^{#1}_{#2}}
-\newcommand{\MerkleSibling}{\mathsf{sibling}}
-\newcommand{\MerkleCRH}{\mathsf{MerkleCRH}}
-\newcommand{\MerkleHashLength}{\mathsf{\ell_{Merkle}}}
-\newcommand{\MerkleHash}{\bitseq{\MerkleHashLength}}
-
-% Transactions
-\newcommand{\versionField}{\mathtt{version}}
-\newcommand{\txInCount}{\mathtt{tx\_in\_count}}
-\newcommand{\txIn}{\mathtt{tx\_in}}
-\newcommand{\txOutCount}{\mathtt{tx\_out\_count}}
-\newcommand{\txOut}{\mathtt{tx\_out}}
-\newcommand{\lockTime}{\mathtt{lock\_time}}
-\newcommand{\nJoinSplit}{\mathtt{nJoinSplit}}
-\newcommand{\vJoinSplit}{\mathtt{vJoinSplit}}
-\newcommand{\vpubOldField}{\mathtt{vpub\_old}}
-\newcommand{\vpubNewField}{\mathtt{vpub\_new}}
-\newcommand{\anchorField}{\mathtt{anchor}}
-\newcommand{\joinSplitSig}{\mathtt{joinSplitSig}}
-\newcommand{\joinSplitPrivKey}{\mathtt{joinSplitPrivKey}}
-\newcommand{\joinSplitPubKey}{\mathtt{joinSplitPubKey}}
-\newcommand{\nullifiersField}{\mathtt{nullifiers}}
-\newcommand{\commitments}{\mathtt{commitments}}
-\newcommand{\ephemeralKey}{\mathtt{ephemeralKey}}
-\newcommand{\encCiphertexts}{\mathtt{encCiphertexts}}
-\newcommand{\randomSeed}{\mathtt{randomSeed}}
-\newcommand{\Varies}{\textit{Varies}}
-\newcommand{\heading}[1]{\multicolumn{1}{c|}{#1}}
-\newcommand{\type}[1]{\texttt{#1}}
-\newcommand{\compactSize}{\type{compactSize uint}}
-
-\newcommand{\sighashType}{\term{SIGHASH type}}
-\newcommand{\sighashTypes}{\term{SIGHASH types}}
-\newcommand{\SIGHASHALL}{\mathsf{SIGHASH\_ALL}}
-\newcommand{\scriptSig}{\mathtt{scriptSig}}
-\newcommand{\scriptPubKey}{\mathtt{scriptPubKey}}
-\newcommand{\ScriptOP}[1]{\texttt{OP\_{#1}}}
-
-% Equihash and block headers
-\newcommand{\validEquihashSolution}{\term{valid Equihash solution}}
-\newcommand{\powtag}{\mathsf{powtag}}
-\newcommand{\powheader}{\mathsf{powheader}}
-\newcommand{\powcount}{\mathsf{powcount}}
-\newcommand{\nVersion}{\mathtt{nVersion}}
-\newcommand{\hashPrevBlock}{\mathtt{hashPrevBlock}}
-\newcommand{\hashMerkleRoot}{\mathtt{hashMerkleRoot}}
-\newcommand{\hashReserved}{\mathtt{hashReserved}}
-\newcommand{\nTimeField}{\mathtt{nTime}}
-\newcommand{\nTime}{\mathsf{nTime}}
-\newcommand{\nBitsField}{\mathtt{nBits}}
-\newcommand{\nBits}{\mathsf{nBits}}
-\newcommand{\nNonce}{\mathtt{nNonce}}
-\newcommand{\solutionSize}{\mathtt{solutionSize}}
-\newcommand{\solution}{\mathtt{solution}}
-\newcommand{\SHAd}{\term{SHA-256d}}
-
-% Proving system
-\newcommand{\ZK}{\mathsf{ZK}}
-\newcommand{\ZKProvingKey}{\mathsf{ZK.ProvingKey}}
-\newcommand{\ZKVerifyingKey}{\mathsf{ZK.VerifyingKey}}
-\newcommand{\pk}{\mathsf{pk}}
-\newcommand{\vk}{\mathsf{vk}}
-\newcommand{\ZKGen}{\mathsf{ZK.Gen}}
-\newcommand{\ZKProof}{\mathsf{ZK.Proof}}
-\newcommand{\ZKPrimary}{\mathsf{ZK.PrimaryInput}}
-\newcommand{\ZKAuxiliary}{\mathsf{ZK.AuxiliaryInput}}
-\newcommand{\ZKSatisfying}{\mathsf{ZK.SatisfyingInputs}}
-\newcommand{\ZKProve}[1]{\mathsf{ZK.}\mathtt{Prove}_{#1}}
-\newcommand{\ZKVerify}[1]{\mathsf{ZK.}\mathtt{Verify}_{#1}}
-\newcommand{\Simulator}{\mathcal{S}}
-\newcommand{\Distinguisher}{\mathcal{D}}
-\newcommand{\JoinSplit}{\text{\footnotesize\texttt{JoinSplit}}}
-\newcommand{\ZKJoinSplit}{\mathsf{ZK}_{\JoinSplit}}
-\newcommand{\ZKJoinSplitVerify}{\ZKJoinSplit\mathsf{.Verify}}
-\newcommand{\ZKJoinSplitProve}{\ZKJoinSplit\mathsf{.Prove}}
-\newcommand{\ZKJoinSplitProof}{\ZKJoinSplit\mathsf{.Proof}}
-\newcommand{\Proof}{\pi}
-\newcommand{\JoinSplitProof}{\Proof_{\JoinSplit}}
-\newcommand{\zkproof}{\mathtt{zkproof}}
-\newcommand{\POUR}{\texttt{POUR}}
-\newcommand{\Prob}[2]{\mathrm{Pr}\scalebox{0.88}{\ensuremath{
-  \left[\!\!\begin{array}{c}#1\end{array} \middle| \begin{array}{l}#2\end{array}\!\!\right]
-}}}
-
-% JoinSplit
-\newcommand{\hSig}{\mathsf{h_{Sig}}}
-\newcommand{\hSigText}{\texorpdfstring{$\hSig$}{hSig}}
-\newcommand{\h}[1]{\mathsf{h_{\mathnormal{#1}}}}
-\newcommand{\NOld}{\mathrm{N}^\mathsf{old}}
-\newcommand{\NNew}{\mathrm{N}^\mathsf{new}}
-\newcommand{\allN}[1]{\mathrm{1}..\mathrm{N}^\mathsf{#1}}
-\newcommand{\allOld}{\allN{old}}
-\newcommand{\allNew}{\allN{new}}
-\newcommand{\setofOld}{\setof{\allOld}}
-\newcommand{\setofNew}{\setof{\allNew}}
-\newcommand{\vmacs}{\mathtt{vmacs}}
-\newcommand{\GroupG}[1]{\mathbb{G}_{#1}}
-\newcommand{\GroupGstar}[1]{\mathbb{G}^\ast_{#1}}
-\newcommand{\PointP}[1]{\mathcal{P}_{#1}}
-\newcommand{\xP}{{x_{\hspace{-0.12em}P}}}
-\newcommand{\yP}{{y_{\hspace{-0.03em}P}}}
-\newcommand{\AtInfinity}[1]{\mathcal{O}_{#1}}
-\newcommand{\GF}[1]{\mathbb{F}_{#1}}
-\newcommand{\GFstar}[1]{\mathbb{F}^\ast_{#1}}
-\newcommand{\ECtoOSP}{\mathsf{EC2OSP}}
-\newcommand{\ECtoOSPXL}{\mathsf{EC2OSP\mhyphen{}XL}}
-\newcommand{\ECtoOSPXS}{\mathsf{EC2OSP\mhyphen{}XS}}
-\newcommand{\ItoOSP}[1]{\mathsf{I2OSP}_{#1}}
-\newcommand{\ItoBSP}[1]{\mathsf{I2BSP}_{#1}}
-\newcommand{\FEtoIP}{\mathsf{FE2IP}}
-\newcommand{\BNImpl}{\mathtt{ALT\_BN128}}
-\newcommand{\vpubOld}{\mathsf{v_{pub}^{old}}}
-\newcommand{\vpubNew}{\mathsf{v_{pub}^{new}}}
-\newcommand{\nOld}[1]{\NoteTuple{#1}^\mathsf{old}}
-\newcommand{\nNew}[1]{\NoteTuple{#1}^\mathsf{new}}
-\newcommand{\vOld}[1]{\mathsf{v}_{#1}^\mathsf{old}}
-\newcommand{\vNew}[1]{\mathsf{v}_{#1}^\mathsf{new}}
-\newcommand{\RandomSeed}{\mathsf{randomSeed}}
-\newcommand{\rt}{\mathsf{rt}}
-\newcommand{\treepath}[1]{\mathsf{path}_{#1}}
-\newcommand{\Receive}{\mathsf{Receive}}
-\newcommand{\EnforceMerklePath}[1]{\mathsf{enforceMerklePath}_{~\!\!#1}}
-
-
-\newcommand{\consensusrule}[1]{\needspace{3ex}\subparagraph{Consensus rule:}{#1}}
-\newenvironment{consensusrules}{\introlist\subparagraph{Consensus rules:}\begin{itemize}}{\end{itemize}}
-\newcommand{\securityrequirement}[1]{\needspace{3ex}\subparagraph{Security requirement:}{#1}}
-\newenvironment{securityrequirements}{\introlist\subparagraph{Security requirements:}\begin{itemize}}{\end{itemize}}
 \newcommand{\pnote}[1]{\subparagraph{Note:}{#1}}
 \newenvironment{pnotes}{\introlist\subparagraph{Notes:}\begin{itemize}}{\end{itemize}}
 
@@ -775,32 +446,31 @@ electronic commerce and payment, financial privacy, proof of work, zero knowledg
 \begin{abstract}
 \normalsize \noindent \textbf{Abstract.}
 
-
 Bitcoin Hush (\BTCH) is a new research and development cryptocoin which has
 many unique features compared to existing options. It avoids all transaction
 history and simply imports Unspent Transaction Output (UTXO) values for
-four different blockchains onto a fifth "host chain", Komodo. We use the Komodo Asset Chain feature to build
-a coin with delayed-Proof-of-Work, which enjoys the full security of Bitcoin
-level security via notarization.
+four different blockchains onto a fifth, brand-new chain. We use the Komodo Asset Chain feature to build
+a coin with delayed-Proof-of-Work \cite{dPoW}, which enjoys full Bitcoin
+hashpower security via notarization.
 
 Additionally, the need for the latest two way replay protection (2WRP) algorithms are
 completely avoided, since no transaction hashes are leaked
 onto the new chain. This also completely avoids the problem that many Bitcoin
 forks have where they inherit a very large existing chain and must sync gigabytes
-of data.
+of unused data.
 
-We hope these techniques are utilized in all future Bitcoin and related forks
+We hope these techniques are utilized in future Bitcoin and related forks
 to avoid large inefficiencies as well as potential replay attacks.
 
-The recently released \HushList protocol is compatible with \BTCH, \KMD and
-all \KMD asset chains, which all contain \zkSNARK technology.
+The recently released \HushList \cite{HushList} protocol is compatible with \BTCH, 
+Komodo \KMD and all \KMD asset chains, which all contain \zkSNARK \cite{BCTV2015} technology.
 Additionaly, \HushList is known to be compatible with
-\HUSH, \ZEC, \ZCL, \ZEN, \ZER and the upcoming \BTCP.
-
+\HUSH, Zcash \ZEC, VoteCoin \VOT, Zen \ZEN, Zerocoin \ZER, Zclassic \ZCL
+and the upcoming Zgold \ZAU by radix42.
 
 \vspace{1.5ex}
 \noindent This specification defines how the \BTCH cryptocoin works and how
-how it builds on the foundation of \Komodo,  \Zcash and \Bitcoin .
+how it builds on the foundation of \cite{Komodo},  \cite{Zcash} and \cite{Bitcoin}.
 
 \vspace{2.5ex}
 \noindent \textbf{Keywords:}~ \StrSubstitute[0]{\keywords}{,}{, }.
@@ -818,9 +488,147 @@ how it builds on the foundation of \Komodo,  \Zcash and \Bitcoin .
 \newpage
 
 \nsection{Introduction}
+
+Bitcoin Hush is a "mergedrop", i.e. it is an airdrop of value from four different chains, merged together, on a new chain.
+
+It's become common to fork the Bitcoin or Zcash network while inheriting all transaction history, which lead to a cryptocoin that has very little hashpower to protect massive amounts of data. We refer to this as a "worst of all worlds" solution and the ideas in this paper provide working examples of
+avoiding this situation.
+
+For example, Bitcoin Gold inherited about 120GB of Bitcoin history and every Bitcoin Gold full node
+must download that locally, before ever getting to any Bitcoin Gold history.  The later in time
+a Bitcoin fork occurs and uses the method, the larger the dataset is (currently 150GB and growing faster) and the more worse the "worst of all worlds" becomes. Just about every Bitcoin fork seen
+today uses this method.
+
+We hope that various organizations and companies realize that the Komodo Platform provides
+"easy onramps" to making a new blockchain which improves on older "techniques" which amount
+to forcing full node operators to use excessive amount of bandwidth and disk space for no good reason.
+
+Additionally, the new \HushList protocol is compatible with Bitcoin Hush and provides the world
+yet another place to have secure and private communication.
+
+\nsection{What is a UTXO, really?}
+
+Addresses spending money are called "inputs" and those receiving money in a transaction are called 
+transaction outputs, TXOs. Transaction outputs that are not spent are called Unspent Transaction Output, or UTXOs.
+The concept of "spentness" is a function of block height, i.e. the fact of whether a particular 
+TXO is spent or not changes over time. This is why a snapshot block is needed, to define a point
+in time to find unspent outputs.
+
+A UTXO is just a blob of binary data, and has many different formats that have evolved since Bitcoin began
+in 2009. The data usually contains some kind of public key or a hash of one, and other metadata. Most UTXO are around 20 bytes but multisig UTXOs can be hundreds of bytes.
+
+For example, one of the most common forms of UTXO looks like this
+
+	\textbf{76a914d3730f005e16bbf741ccbf60a5f66b7be930cb7a88ac}
+
+\nsection{Hush UTXOs}
+
+NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
+
+This data corresponds to Hush Block Height \textbf{245496} at Jan 24, 2018 7:03:34 AM
+ UTC and was extracted directly from the internal
+LevelDB database using both \cite{BitcoinTools} and \cite{utxodump}.
+
+Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
+forks, to our knowledge, use the older v0.8-v0.14 LevelDB format.
+
+At this height, \textbf{607134} UTXOs exist, in \textbf{95933} transactions and 
+\textbf{3177032.96851848 HUSH}. 
+
+This data is extracted from the response of the \textbf{gettxoutsetinfo} RPC command while the full node is paused at the correct block.
+Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will be made a proper
+command-line argument to make it easier to analyze UTXOs in the future. 
+
+\nsection{Bitcoin UTXOs}
+
+NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
+
+This data corresponds to Block Height \textbf{505157} at Jan 24th, 2018 10:22:15 UTC and was
+extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all \textbf{63.6} million UTXOs at this height.
+
+There is \textbf{16814298.58608387 BTC} in circulation stored across \textbf{63646112} UTXOs in 
+\textbf{27834789} unique transparent addresses (taddrs).
+Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{872314} UTXOs of a single satoshi. The latter are mostly likely from transaction spam attacks from other networks.
+
+%Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be above the "dust level"
+%to be part of the airdrop. That is, the level at which the cost to airdrop is greater than the value of the UTXO. The level for each chain has yet to be decided.
+
+\nsection{SUPERNET UTXOs}
+
+To Be Determined
+
+\nsection{DEX UTXOs}
+
+To Be Determined
+
+\nsection{Transporting Money to the BTCH Chain}
+
+The \zsendmany RPC is used to efficiently send money to all the appropriate addresses, with the appropriate amount, on the new BTCH chain.
+
+Once the final snapshot balances are known, the transparent addresses from other
+networks are transformed into Komodo-compatible addresses. 
+This is done by taking the RMD160 and then changing the prefix to the KMD type, then  base58\_check encoding to produce new transparent addresses for the BTCH network.
+
+Then, many many \zsendmany transactions are performed, each with many recipients (such as 100 or 128).
+Once the \zsendmany transactions for a particular chain are sent, that completes the airdrop process. Now
+users can claim their airdrop via their private key.
+
+\nsection{How To Access Your BTCH Airdrop}
+
+The very high level idea is that the private key to your transparent address gives you access
+to new funds on a new network. Extreme paranoia about private keys is not unreasonable. Fear of software bugs, malware, or anything stealing your
+original \HUSH can simply be countered by moving your \HUSH to a new address,
+which can be a taddr or zaddr, after the snapshot.
+
+If you move your \HUSH post-snapshot, the privkey in question is no longer valid for your
+\HUSH, and you can worry a bit less. This also protects people that might have DNS or BGP
+attacks redirect them to illegitamate downloads.
+
+For simplicity, let us assume $t_A$ is a taddr with private key $k_A$. The
+\textbf{dumpprivkey} RPC method exists in all Bitcoin forks, as well as Zcash
+forks, and dumps the private key in "Wallet Import Format" (WIF). This format
+is accepted by the Agama Wallet. Once imported to the Agama Wallet, \BTCH
+can be used on BarterDEX \cite{BarterDEX} as well.
+
+\nsection{BTCH Chain Size}
+
+One of the huge features of using a KMD asset chain with an airdrop is 
+avoiding all transaction history, i.e. all transaction data is ignored,
+only final balances in a transparent address are transported to the
+new chain. When airdroping a Bitcoin fork, this currently will save
+close to 150GB in chain size!
+
+The exact numbers for the new BTCH chain will not be known until the snapshot
+is complete, but current estimates are that the initial BTCH chain will be
+under 0.5GB in size! 
+
+\nsection{Running a BTCH Full Node}
+
+Running a full \BTCH node requires downloading and syncing the \KMD chain,
+which \BTCH uses for dPoW. This will use gigabytes of bandwidth at first,
+and could take a day or more to fully sync depending on download speeds.
+
+Running a full \BTCH node is not required to protect the security of the network,
+nor to generate new money, but full nodes can earn the verification reward of 0.0001 BTCH per block plus
+any transaction fees in that block.
+
+Full instructions can be found on the main \BTCH Github Repo \cite{BitcoinHush}.
+
+\nsection{Future Directions}
+
+The \cite{HushNG} GUI is actively being worked on and will integrate Bitcoin Hush as the first additional
+coin and will provide decentralized censorship-resistant communication,
+powered by \zkSNARKs.
+
 \nsection{Special Thanks}
+
+Thanks to Tamsin Thorn for extensive help editing this document and to all the people that
+help maintain all the Free and Open Source software that our community relies on.
+
+
 \nsection{References}
 
+%...
 \begingroup
 \hfuzz=2pt
 \renewcommand{\section}[2]{}
