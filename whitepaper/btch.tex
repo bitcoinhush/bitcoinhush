@@ -554,12 +554,15 @@ and entire applications between coins.
 
 NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
 
-This data corresponds to Block Height \textbf{505157} at Jan 24th, 2018 10:22:15 UTC and was
-extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. It took approximately 22 minutes to dump all \textbf{63.6} million UTXOs at this height.
+This data corresponds to Block Height \textbf{507089} at Feb 1st 2018 11:55:44 UTC and was
+extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. The initial process of dumping took approximately 30 minutes,
+and then there are various other stages of filtering, parsing and verifying the data.
 
-There is \textbf{16814298.58608387 BTC} in circulation stored across \textbf{63646112} UTXOs in 
-\textbf{27834789} unique transparent addresses (taddrs).
-Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{872314} UTXOs of a single satoshi. The latter are mostly likely from transaction spam attacks from other networks.
+There was \textbf{16838448.58598230 BTC} in circulation stored across \textbf{61559974} UTXOs in 
+\textbf{28983417} transactions and \textbf{xxx} unique transparent addresses (taddrs).
+
+Somewhat surprisingly, there are \textbf{xxx} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{xxx} UTXOs of a single satoshi. 
+These UTXOs are unprofitable to use and could be from transaction spam attacks from other networks.
 
 \nsubsection{Bitcoin UTXO Statistics}
 %Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be above the "dust level"
