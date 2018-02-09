@@ -521,23 +521,34 @@ For example, one of the most common forms of UTXO looks like this
 
 	\textbf{76a914d3730f005e16bbf741ccbf60a5f66b7be930cb7a88ac}
 
+The first 4 bytes \textbf{76a9} and the last 4 \textbf{88ac} correspond to Bitcoin Script opcodes and the rest of the data
+in the middle is the hash of a public key, which is why this kind of UTXO is called a Push-To-PubKey-Hash (P2PKH) UTXO.
+
 \nsection{Hush UTXOs}
-
-NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
-
-This data corresponds to Hush Block Height \textbf{245496} at Jan 24, 2018 7:03:34 AM
- UTC and was extracted directly from the internal
-LevelDB database using both \cite{BitcoinTools} and \cite{utxodump}.
 
 Since Hush is a fork of the Zcash codebase, and Zcash forked from Bitcoin 0.11.2, Hush and all Zcash code
 forks, to our knowledge, use the older v0.8-v0.14 LevelDB format.
 
-At this height, \textbf{607134} UTXOs exist, in \textbf{95933} transactions and 
-\textbf{3177032.96851848 HUSH}. 
+This data corresponds to Hush Block Height \textbf{249985} at Feb 1st 2018 11:58:34 AM UTC
+and was extracted directly from the internal LevelDB database using both \cite{BitcoinTools} and \cite{utxodump}.
+
+At this height, \textbf{653804} UTXOs exist, in \textbf{103408} transactions and
+\textbf{3221897.42163446 HUSH} was in circulation. At this point in time, there
+were 17617 unique transparent addresses with at least 1 UTXO.
 
 This data is extracted from the response of the \textbf{gettxoutsetinfo} RPC command while the full node is paused at the correct block.
 Pausing the Hush daemon to allow RPC calls is not a standard function, the \textbf{pause} branch of MyHush/hush.git includes a way to achieve this. This functionality will be made a proper
 command-line argument to make it easier to analyze UTXOs in the future. 
+
+The Hush airdrop included all addresses, no matter how small the amount in the address.
+
+\nsubsection{Hush UTXO Statistics}
+
+One would expect zero, but actually 4 addresses used Push-To-PubKey P2PK UTXOs, a format that has not been actively used since
+before Hush came into existence. By explorer analsysis and the fact that these addresses almost exclusively receive 12.5 HUSH
+block rewards, we know they must be solo miners who modified existing P2PK software for the Bitcoin network to work for HUSH.
+That is a great example of how Zcash "embraced and extended" Bitcoin itself, and why it is very reasonable to port features,
+and entire applications between coins.
 
 \nsection{Bitcoin UTXOs}
 
@@ -550,6 +561,7 @@ There is \textbf{16814298.58608387 BTC} in circulation stored across \textbf{636
 \textbf{27834789} unique transparent addresses (taddrs).
 Somewhat surprisingly, there are \textbf{5605} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{872314} UTXOs of a single satoshi. The latter are mostly likely from transaction spam attacks from other networks.
 
+\nsubsection{Bitcoin UTXO Statistics}
 %Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be above the "dust level"
 %to be part of the airdrop. That is, the level at which the cost to airdrop is greater than the value of the UTXO. The level for each chain has yet to be decided.
 
