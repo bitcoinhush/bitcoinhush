@@ -552,8 +552,6 @@ and entire applications between coins.
 
 \nsection{Bitcoin UTXOs}
 
-NOTE: This pre-release refers to stats before the actual snapshot, these numbers will change slighlty with the official snapshot.
-
 This data corresponds to Block Height \textbf{507089} at Feb 1st 2018 11:55:44 UTC and was
 extracted directly from the internal v0.15 LevelDB database with the \cite{utxodump} tool. The initial process of dumping took approximately 30 minutes,
 and then there are various other stages of filtering, parsing and verifying the data.
@@ -561,8 +559,18 @@ and then there are various other stages of filtering, parsing and verifying the 
 There was \textbf{16838448.58598230 BTC} in circulation stored across \textbf{61559974} UTXOs in 
 \textbf{28983417} transactions and \textbf{xxx} unique transparent addresses (taddrs).
 
-Somewhat surprisingly, there are \textbf{xxx} UTXOs with exactly \textbf{0 BTC} in them and another \textbf{xxx} UTXOs of a single satoshi. 
-These UTXOs are unprofitable to use and could be from transaction spam attacks from other networks.
+
+\nsubsection{Bitcoin Spam Attacks}
+
+Somewhat surprisingly, there are \textbf{5568} UTXOs with exactly \textbf{0 BTC} in them, in 816 unique taddrs.
+These are overwhelmingly P2PKH UTXOs (99.77\%) and no multisig or native segwit zero satoshi UTXOs were detected.
+
+Much more common are 1 satoshi UTXO, with 871177 UTXOs in 608188 unique taddrs. All UTXO types except segwit native
+are present in this set.
+
+These are "unprofitable" UTXOs in the sense that someone would lose more money by claiming their value, due to the
+fact that current network fees are greater than those UTXO values. Most likely they are remnants of transaction
+spam attacks from miners, who can often earn their money back via fees from the block that the UTXOs occured in.
 
 \nsubsection{Bitcoin UTXO Statistics}
 %Note that UTXOs of any size are taken into account, but the final sum of all UTXOs in one taddr must be above the "dust level"
