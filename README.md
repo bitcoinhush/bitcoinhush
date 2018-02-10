@@ -9,6 +9,7 @@ BTCH uses RPC port 10161 and a P2P port of 10160, you might need to allow them i
   git clone https://github.com/jl777/komodo
   cd komodo
   # This needs to download the Zcash Proving key, around ~1GB file
+  # This is only needed *once* per user account, per machine
   ./zcutil/fetch-params.sh
   # This will take some time, replace 2 with the number of CPUs you have
   ./zcutil/build.sh -j2
