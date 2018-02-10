@@ -9,6 +9,7 @@ BTCH uses RPC port 10161 and a P2P port of 10160, you might need to allow them i
   git clone https://github.com/jl777/komodo
   cd komodo
   # This needs to download the Zcash Proving key, around ~1GB file
+  # This is only needed *once* per user account, per machine
   ./zcutil/fetch-params.sh
   # This will take some time, replace 2 with the number of CPUs you have
   ./zcutil/build.sh -j2
@@ -50,11 +51,12 @@ BTCH uses RPC port 10161 and a P2P port of 10160, you might need to allow them i
 
 ## Can I mine BTCH?
 
-Mining does not create new money, but yes, you can earn small amounts of BTCH by helping confirm blocks, you simply add `-gen` when you start things up:
+Mining does get a "block reward", but yes, you can earn small amounts of BTCH by helping confirm blocks, you simply add `-gen` when you start things up:
 
 ```
 ./src/komodod -ac_name=BTCH -ac_supply=20998641 -addnode=78.47.196.146 -gen &> btch.log &
 ```
-Note that this will send each bit of earnings you make to a new address, which is not great. Set a `mineraddress=taddr` in your BTCH.conf to have it all go to one address
+Note that this will send each bit of earnings you make to a new address, which is not great. Set a `mineraddress=taddr` in your BTCH.conf to have it all go to one address. The amount you earn will be variable, as it is 0.0001 BTCH + the fees of the transactions in that block.
+Also remember that KMD Asset chains have "on demand" blocks, so if no transactions happen, no block occurs and hence no confirmation rewards.
 
 
