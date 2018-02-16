@@ -4,9 +4,11 @@ Please verify your address shows the correct amount!
 
 ## Hush
 
-These files are small and unordered.
+These files are small and unordered. They include all Hush addresses, regardless of amount.
 
 ## Bitcoin
+
+Only addresses with at least 0.01BTC are included in the airdrop.
 
 Each CSV file has at most 1 million addresses, and are ordered from smallest to largest.
 
