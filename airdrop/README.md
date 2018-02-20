@@ -12,7 +12,7 @@ Only addresses with at least 0.01BTC are included in the airdrop.
 
 Each CSV file has at most 1 million addresses, and are ordered from smallest to largest.
 
-The airdrop-07.csv file is in a slightly different format, and consists of the wealthiest BTC addresses.
+The robin-hood.csv file is in a slightly different format, and consists of the wealthiest BTC addresses.
 In particular, they are the 1% of the 1%, the 2736 addresses with the most Bitcoin. Their original
 amounts are given in the first column, their amounts are reduced by ~9.4% in the second column, which are the
 amounts airdropped to the BTCH chain.
